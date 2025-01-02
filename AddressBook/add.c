@@ -9,6 +9,7 @@ int add(const char* name, const char* phone)
 	strcpy_s(newData->name, sizeof(newData->name), name);
 	strcpy_s(newData->phone, sizeof(newData->phone), phone);
 
+	insertAtTail(newData);
 
 	
 	return 0;

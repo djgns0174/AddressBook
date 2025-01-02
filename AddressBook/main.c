@@ -9,6 +9,7 @@
 #include "mark.h"
 #include "rm.h"
 
+#include "node.h"
 
 int main() {
 
@@ -18,6 +19,7 @@ int main() {
 	printf("명령어 매뉴얼\n저장:add  즐겨찾기:mark  즐겨찾기 목록:cmark  모든목록:c  검색:find  삭제:rm  종료:exit\n");
 	printf("===================================================================================================\n\n");
 
+	initList();
 
 
 	while (1) {
@@ -35,6 +37,8 @@ int main() {
 			phone = strtok_s(NULL, ":", &temp);
 
 			add(name, phone);	// 저장
+
+			printf("성공적으로 저장되었습니다.\n");
 			continue;
 		}
 		else if (strcmp(input, "mark") == 0) {
@@ -46,7 +50,7 @@ int main() {
 			continue;
 		}
 		else if (strcmp(input, "c") == 0) {
-			printf("c\n");
+			printList();
 			continue;
 		}
 		else if (strcmp(input, "find") == 0) {
