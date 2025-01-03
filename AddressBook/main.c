@@ -11,6 +11,14 @@
 
 #include "node.h"
 
+void parseInputData(const char* name, const char* phone) {
+	char szData[128]; char* temp;
+	scanf_s("%127s", szData, (unsigned)_countof(szData));  // 버퍼 크기 전달
+
+	name = strtok_s(szData, ":", &temp);
+	phone = strtok_s(NULL, ":", &temp);
+}
+
 int main() {
 
 	char input[64];
@@ -27,38 +35,46 @@ int main() {
 		scanf_s("%s", input, sizeof(input));
 
 		if (strcmp(input, "add") == 0) {
-			char szData[128];
-			char* phone; char* name; char* temp;
+			char* phone = NULL; char* name = NULL;
 
 			printf("이름과 전화번호를 입력해주세요(홍길동:12345678) :");
-			scanf_s("%127s", szData, (unsigned)_countof(szData));  // 버퍼 크기 전달
-			
-			name = strtok_s(szData, ":", &temp);
-			phone = strtok_s(NULL, ":", &temp);
-
+			parseInputData(name, phone);
 			add(name, phone);	// 저장
 
 			printf("성공적으로 저장되었습니다.\n");
 			continue;
 		}
 		else if (strcmp(input, "mark") == 0) {
-			printf("mark\n");
+			char* phone = NULL; char* name = NULL;
+			printf("이름과 전화번호를 입력해주세요(홍길동:12345678) :");
+			parseInputData(name, phone);
+
+			if (mark(name, phone) == 0)
+				printf("성공적으로 즐겨찾기되었습니다.\n");
 			continue;
 		}
 		else if (strcmp(input, "cmark") == 0) {
-			printf("cmark\n");
+			cmark();
 			continue;
 		}
 		else if (strcmp(input, "c") == 0) {
-			printList();
+			c();
 			continue;
 		}
 		else if (strcmp(input, "find") == 0) {
-			printf("find\n");
+			char name[64];
+			printf("이름을 입력해주세요:");
+			scanf_s("%s", name, sizeof(name));
+			findByName(name);
 			continue;
 		}
 		else if (strcmp(input, "rm") == 0) {
-			printf("rm\n");
+			char* phone = NULL; char* name = NULL;
+			printf("이름과 전화번호를 입력해주세요(홍길동:12345678) :");
+			parseInputData(name, phone);
+
+			if (rm(name, phone) == 0)
+				printf("성공적으로 삭제되었습니다.\n");
 			continue;
 		}
 		else if (strcmp(input, "exit") == 0) {

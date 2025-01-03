@@ -1,6 +1,4 @@
 #include "add.h"
-#include "data.h"
-#include "node.h"
 
 int add(const char* name, const char* phone)
 {
@@ -10,7 +8,6 @@ int add(const char* name, const char* phone)
 	strcpy_s(newData->phone, sizeof(newData->phone), phone);
 
 	insertAtTail(newData);
-
 	
 	return 0;
 }

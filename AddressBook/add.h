@@ -7,4 +7,4 @@
 #include "data.h"
 #include "node.h"
 
-int add();
+int add(const char* name, const char* phone);
